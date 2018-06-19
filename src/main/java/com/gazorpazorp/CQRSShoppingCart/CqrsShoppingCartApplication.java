@@ -2,29 +2,30 @@ package com.gazorpazorp.CQRSShoppingCart;
 
 import javax.annotation.PostConstruct;
 
-import org.axonframework.amqp.eventhandling.spring.SpringAMQPMessageSource;
-import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.axonframework.serialization.Serializer;
+import org.axonframework.eventsourcing.AggregateFactory;
+import org.axonframework.eventsourcing.AggregateSnapshotter;
+import org.axonframework.eventsourcing.EventCountSnapshotTriggerDefinition;
+import org.axonframework.eventsourcing.EventSourcingRepository;
+import org.axonframework.eventsourcing.Snapshotter;
+import org.axonframework.eventsourcing.eventstore.EventStore;
+import org.axonframework.spring.eventsourcing.SpringAggregateSnapshotterFactoryBean;
 import org.hsqldb.util.DatabaseManagerSwing;
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Exchange;
 import org.springframework.amqp.core.ExchangeBuilder;
-import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.QueueBuilder;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.rabbitmq.client.Channel;
+import com.gazorpazorp.common.cart.CartAggregate;
 
 @SpringBootApplication(scanBasePackages="com.gazorpazorp")
 @EntityScan(basePackages={"com.gazorpazorp.query.model", "org.axonframework.eventsourcing.eventstore.jpa", "org.axonframework.eventhandling.saga.repository.jpa", "org.axonframework.eventhandling.tokenstore.jpa"})
@@ -75,5 +76,9 @@ public class CqrsShoppingCartApplication {
 //				}
 //			};
 //		}
+		
+		
+		
+
 	}
 }
