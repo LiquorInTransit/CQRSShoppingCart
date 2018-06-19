@@ -1,3 +1,5 @@
+server:
+  port: 8080
 spring:
   data:
     rest:
@@ -13,6 +15,36 @@ spring:
         dialect: org.hibernate.dialect.HSQLDialect
     hibernate:
       ddl-auto: create
+      
+shopping-cart-group: carts
+
+axon:
+  amqp:
+    exchange: events
+#  eventhandling:
+#    processors:
+#      carts:
+#        mode: subscribing
+#        source: cartEvents
+
+---
+
+spring:
+  profiles: separated
+shopping-cart-group: carts
+
+axon:
+  amqp:
+    exchange: events
+#  eventhandling:
+#    processors:
+#      carts:
+#        mode: subscribing
+#        source: cartEvents
+
+
+
+
 #  h2:
 #    console:
 #      enabled: true
