@@ -31,20 +31,20 @@ public class AxonConfiguration {
 	
 
 //	//Snapshot config
+//	@Bean
+//	public AggregateFactory<CartAggregate> cartAggregateAggregateFactory() {
+//		return new GenericAggregateFactory<CartAggregate>(CartAggregate.class);
+//	}
+//	@Bean(name = "cartAggregateRepository")
+//    public Repository<CartAggregate> cartAggregateRepository(AggregateFactory<CartAggregate> cartAggregateAggregateFactory,
+//                                                          EventStore eventStore,
+//                                                          SnapshotTriggerDefinition snapshotTriggerDefinition) {
+//        return new EventSourcingRepository<>(cartAggregateAggregateFactory,
+//                                                    eventStore,
+//                                                    snapshotTriggerDefinition);
+//    }	
 	@Bean
-	public AggregateFactory<CartAggregate> cartAggregateAggregateFactory() {
-		return new GenericAggregateFactory<CartAggregate>(CartAggregate.class);
-	}
-	@Bean(name = "cartAggregateRepository")
-    public Repository<CartAggregate> cartAggregateRepository(AggregateFactory<CartAggregate> cartAggregateAggregateFactory,
-                                                          EventStore eventStore,
-                                                          SnapshotTriggerDefinition snapshotTriggerDefinition) {
-        return new EventSourcingRepository<>(cartAggregateAggregateFactory,
-                                                    eventStore,
-                                                    snapshotTriggerDefinition);
-    }	
-	@Bean
-	public SnapshotTriggerDefinition snapshotTriggerDefinition(Snapshotter snapshotter){
+	public SnapshotTriggerDefinition shoppingCartTriggerDefinition(Snapshotter snapshotter){
 		return new EventTypeSnapshotTriggerDefinition(snapshotter, CartClearedEvent.class);
 	}	
 	@Bean

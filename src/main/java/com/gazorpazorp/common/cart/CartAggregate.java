@@ -23,7 +23,7 @@ import com.gazorpazorp.common.exception.InsufficientInventoryException;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Aggregate
+@Aggregate(snapshotTriggerDefinition="shoppingCartTriggerDefinition")
 @Getter
 @NoArgsConstructor
 public class CartAggregate {
