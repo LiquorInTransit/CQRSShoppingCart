@@ -50,8 +50,8 @@ public class ShoppingCartController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public String createCart () {
 		CreateCartCommand command = new CreateCartCommand(getAuditEntry());
-		commandGateway.send(command, LoggingCallback.INSTANCE);
-		return command.getTargetId();
+		return commandGateway.sendAndWait(command);
+		//return command.getTargetId();
 	}
 	
 	@PostMapping("/cart/{id}")
